@@ -1,0 +1,20 @@
+# headline
+# description
+# createdAt
+# [comments]
+
+
+# just what you can grab publicly
+
+type Story {
+    _id: String!
+    headline: String!
+    author: String
+    desription: String
+    url: String
+
+}
+
+type Mutation {
+    createStory(headline: String!) : Story
+}
