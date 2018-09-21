@@ -1,6 +1,32 @@
 import Stories from "./stories";
 
 
+
+
+export default {
+    Query: {
+        stories(obj, args, { userId }) {
+            //console.log(userId);
+            return  Stories.find({
+                userId
+            }).fetch();
+        } 
+    },
+    Mutation: {
+        createStory(obj, { headline }, { userId }) {
+             console.log('got here');
+            // console.log(headline);
+            const storyId = Stories.insert({
+                headline,
+                userId
+            });
+            return Stories.findOne(storyId)
+        }
+    }
+};
+
+//Initial populate and find DB
+
 // Stories.insert({
 //     headline: 'Recommendations for dementia patients',
 //     description: 'A new study from Singapore on Sundown suggests...',
@@ -9,26 +35,11 @@ import Stories from "./stories";
 // });
 
 
-const res = Stories.find({}).fetch();
-console.log(res);
+// const res = Stories.find({}).fetch();
+// console.log(res);
 
-export default {
-    Query: {
-        stories() {
-            return  Stories.find({}).fetch();
-        } 
-    },
-    Mutation: {
-        createStory(obj, { headline }, context) {
-             console.log('got here');
-            // console.log(headline);
-            const storyId = Stories.insert({
-                headline
-            });
-            return Stories.findOne(storyId)
-        }
-    }
-};
+
+
 
 //return b/c our schema states we want to return the story
 //{ headline } was args

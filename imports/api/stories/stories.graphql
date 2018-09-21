@@ -13,8 +13,15 @@ type Story {
     desription: String
     url: String
 
+   
 }
 
 type Mutation {
     createStory(headline: String!) : Story
+}
+
+ type Query {
+
+stories: [Story]
+
 }

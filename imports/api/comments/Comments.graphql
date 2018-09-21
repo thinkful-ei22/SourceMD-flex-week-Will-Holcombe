@@ -1,0 +1,16 @@
+type Comment {
+    _id: String!
+    content: String!
+
+}
+
+extend type Mutation {
+    createComment(content: String! userId: String!): Comment
+}
+
+extend type Query {
+
+
+comments: [Comment]
+
+}

@@ -17,7 +17,7 @@ class StoryForm extends Component {
         super(props);
     }
 submitForm = () => {
-console.log(this.headline.value);
+//console.log(this.headline.value);
 this.props.createStory({
     variables: {
         headline: this.headline.value
