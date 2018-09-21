@@ -12,6 +12,7 @@ type Story {
     author: String
     desription: String
     url: String
+    comments: [Comment]
 
    
 }
@@ -20,8 +21,22 @@ type Mutation {
     createStory(headline: String!) : Story
 }
 
+
  type Query {
 
 stories: [Story]
 
+comments: [Comment]
+
 }
+
+type Comment {
+    _id: String
+    content: String
+    
+}
+
+extend type Mutation {
+    createComment(content: String! storyId: String!): Comment
+}
+

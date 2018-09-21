@@ -5,12 +5,24 @@ import gql from 'graphql-tag';
 import { graphql, withApollo } from 'react-apollo';
 
 import StoryForm from  './StoryForm';
+import CommentForm from  './CommentForm';
+
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import { userInfo } from "os";
 //prop in our value called hi  has value hello level up
 const App = ({ loading, stories, client, user }) => { 
-   
+//     constructor() {
+//         super();
+//         this.state = {
+//             showCommentForm: false
+//         };
+//     };
+
+//    addComment() {
+//         this.setState(!showCommentForm)
+
+//    };
     if (loading) return null;
     return ( 
     <div>  
@@ -33,7 +45,9 @@ const App = ({ loading, stories, client, user }) => {
         <ul>
             {stories.map(story => (
                 <li key={story._id}>
-                            {story.headline}
+                     {story.headline}
+                    
+                     <CommentForm storyId={story._id} />
                  </li>
             ))}
         </ul>
@@ -61,6 +75,8 @@ query Stories {
  
 }
 `;
+
+// <button id="show-comment-form" onClick={this.showCommentForm()}>Comment</button>
 //assign our props that come into our component
 export default graphql(storiesQuery, { 
     props: ({data}) => ({ ...data})

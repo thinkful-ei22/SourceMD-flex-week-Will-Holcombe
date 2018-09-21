@@ -1,6 +1,6 @@
-import { StoriesSchema } from '../../api/stories/stories.graphql';
+import { StoriesSchema } from '../../api/stories/stories.and.comments.graphql';
 import  StoriesResolvers  from '../../api/stories/resolvers';
-import { CommentsSchema } from '../../api/comments/comments.graphql';
+//import { CommentsSchema } from '../../api/comments/comments.graphql';
 import  CommentsResolvers  from '../../api/comments/resolvers';
 
 //allows separate files for mutations, schema, and queries
@@ -17,22 +17,20 @@ import UsersResolvers from '../../api/users/resolvers';
 //stories returning an array of Story, defined as
 //id and headline
 
-//hiiiiiiiii
+//hiiiiii
 //CommentsResolvers,  CommentsSchema,
 const resolvers = merge(
 
     StoriesResolvers,
-    
+    CommentsResolvers,
     UsersResolvers
     
     );
-//console.log(StoriesResolvers);
-//console.log('Here', resolvers); 
 
+    //console.log(StoriesResolvers);
+//console.log('Here', resolvers); 
 const typeDefs = [
-   
     StoriesSchema,
-  
     UsersSchema
    
 ];
@@ -41,6 +39,7 @@ const typeDefs = [
 const schema = makeExecutableSchema({
     typeDefs, 
     resolvers
+  
 });
 
 createApolloServer({schema});

@@ -1,4 +1,5 @@
 import Stories from "./stories";
+import Comments from "../comments/comments";
 
 
 
@@ -12,6 +13,13 @@ export default {
             }).fetch();
         } 
     },
+
+    Story: {
+        comments: (story) => Comments.find({ 
+                storyId: story._id
+            }).fetch()
+    },
+
     Mutation: {
         createStory(obj, { headline }, { userId }) {
              console.log('got here');

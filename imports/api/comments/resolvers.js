@@ -1,28 +1,32 @@
 import Comments from "./comments";
-
+//import Stories from "../stories/stories";
 
 
 
 export default {
-    Query: {
-        Comments(obj, args, { userId }) {
+     Query: {
+        comments(obj, { storyId }) {
             //console.log(userId);
             return  Comments.find({
-                userId
-            }).fetch() || {};
+                storyId
+            }).fetch();
         } 
     },
     Mutation: {
-        createComment(obj, { content }, { userId }) {
+        createComment(obj, { content, storyId }) {
              console.log('got here');
             // console.log(headline);
             const commentId = Comments.insert({
                 
                 content,
-                userId
+                storyId
             });
-            return Stories.findOne(commentId)
+            return Comments.findOne(commentId)
         }
     }
 };
-Comments.insert({ content: "This site rocks!"});
+// Comments.insert({ content: "4 out of 5 Doctors love this site!", userId: "xjdiwnkd"});
+
+ 
+// const res = Comments.find({}).fetch();
+// console.log(res);
